@@ -100,5 +100,8 @@ button, button:focus {
   margin-right: 1.2rem;
   margin-top: 1rem;
 }
+#special-price .grid {
+  margin-bottom: 4rem;
+}
 
 /*# sourceMappingURL=style.css.map */
