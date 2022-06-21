@@ -5,13 +5,13 @@ include("header.php");
 
 <?php
 
-    /* include cart */
+    /* include cart template*/
     include("Template/_cart-tamplate.php");
-    /* include cart */
+    /* include cart template*/
 
-    /* include top-sale */
-    include("Template/_top-sale.php");
-    /* include top-sale */
+    /* include new-products */
+    include("Template/_new-products.php");
+    /* include new-products */
 
 ?>
 
