@@ -14,15 +14,11 @@ $db = new DBController();
 
 // Product object
 $product = new Product($db);
+$product_shuffle = $product->getData();
 
 // Cart object
 $Cart = new Cart($db);
-$arr = array(
-    "user_id" => 1,
-    "item_id" => 2
-);
 
-$Cart->insertIntoCart($arr);
 
 
 
