@@ -1,7 +1,7 @@
 <!--Special Price-->
 <?php
-    $brand = array_map(function($pro){return $pro['item_brand'];}, $product_shuffle);
-    $unique = array_unique($brand);
+    $genre = array_map(function($pro){return $pro['item_genre'];}, $product_shuffle);
+    $unique = array_unique($genre);
     sort($unique);
     shuffle($product_shuffle);
 
@@ -21,28 +21,22 @@
         <div id="filters" class="button-group text-right font-baloo font-size-16">
             <button class="btn is-checked" data-filter="*">Wszystkie Marki</button>
             <?php
-                array_map(function ($brand){
-                    printf('<button class="btn" data-filter=".%s">%s</button>', $brand, $brand);
+                array_map(function ($genre){
+                    printf('<button class="btn" data-filter=".%s">%s</button>', $genre, $genre);
                 }, $unique);
             ?>
         </div>
 
         <div class="grid">
             <?php array_map(function ($item) use($in_cart){?>
-            <div class="grid-item border <?php echo $item['item_brand'] ?? "Brand"; ?>">
+            <div class="grid-item border <?php echo $item['item_genre'] ?? "genre"; ?>">
                 <div class="item p-2" style="width: 200px;">
                     <div class="product font-rale">
                         <a href="<?php printf('%s?item_id=%s', 'product.php', $item['item_id']); ?>"><img src="<?php echo $item['item_image'] ?? "/assets/products/13.png"; ?>" alt="product1" class="img-fluid"></a>
                         <div class="text-center pt-4">
                             <h6><?php echo $item['item_name'] ?? "Unknown"; ?></h6>
-                            <div class="rating text-warning font-size-12">
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="far fa-star"></i></span>
-                            </div>
-                            <div class="price py-2">
+                            <p class="font-size-14"><?php echo $item['item_brand'] ?? "Brand"; ?></p>
+                            <div class="price py-1">
                                 <span>$<?php echo $item['item_price'] ?? '0' ?></span>
                             </div>
                             <form method="POST">
@@ -52,7 +46,7 @@
                                 if (in_array($item['item_id'], $in_cart ?? [])){
                                     echo '<button type="submit" disabled class="btn btn-success font-size-12">W Koszyku</button>';
                                 }else{
-                                    echo '<button type="submit" name="top_sale_submit" class="btn btn-warning font-size-12">Dodaj do Koszyka</button>';
+                                    echo '<button type="submit" name="top_sale_submit" class="btn color-skin-bg color-second font-size-12">Dodaj do Koszyka</button>';
                                 }
                                 ?>
                             </form>

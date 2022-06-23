@@ -38,26 +38,20 @@
     <!--Primary Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark color-second-bg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">Sklep Internetowy</a>
+            <a class="navbar-brand" href="index.php">Sklep Muzyczny</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav m-auto font-rubik">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Na Sprzedaż</a>
+                        <a class="nav-link active" aria-current="page" href="index.php#top-sale">Na Sprzedaż</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Kategorie</a>
+                        <a class="nav-link" href="index.php#special-price">Oferty Specjalne</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Produkty <i class="fa-solid fa-chevron-down"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Kategorie <i class="fa-solid fa-chevron-down"></i></a>
+                        <a class="nav-link" href="index.php#blogs">Blog</a>
                     </li>
                 </ul>
                 <form action="#" class="font-size-14 font-rale">

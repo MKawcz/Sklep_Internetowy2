@@ -38,28 +38,29 @@ button, button:focus {
 
 /* Color Template */
 .color-primary {
-    color: #005c99;
+    color: #800000;
 }
 
 .color-primary-bg {
-    background: #005c99;
+    background: #800000;
 }
 
 .color-second {
-    color: #469EAA;
+    color: #001a33;
 }
 
 .color-second-bg {
-    background: #469EAA;
+    background: #001a33;
 }
 
 .color-skin {
-    color: #ffcc99;
+    color: #cc9900;
 }
 
 .color-skin-bg {
-    background: #ffcc99;
+    background: #cc9900;
 }
+
 
 /*  top sale template   */
 #top-sale .owl-carousel .item .product a {

@@ -22,14 +22,8 @@
                         <a href="<?php printf('%s?item_id=%s', 'product.php', $item['item_id']); ?>"><img src="<?php echo $item['item_image'] ?? "/assets/products/1.png"; ?>" alt="product1" class="img-fluid"></a>
                         <div class="text-center pt-4">
                             <h6><?php echo $item['item_name'] ?? "Unknown";?></h6>
-                            <div class="rating text-warning font-size-12">
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="far fa-star"></i></span>
-                            </div>
-                            <div class="price py-2">
+                            <p class="font-size-14"><?php echo $item['item_brand'] ?? "Brand"; ?></p>
+                            <div class="price py-1">
                                 <span>$<?php echo $item['item_price'] ?? '0'; ?></span>
                             </div>
                             <form method="POST">
@@ -39,7 +33,7 @@
                                     if (in_array($item['item_id'], $Cart->getCartId($product->getData('cart')) ?? [])){
                                         echo '<button type="submit" disabled class="btn btn-success font-size-12">W Koszyku</button>';
                                     }else{
-                                        echo '<button type="submit" name="top_sale_submit" class="btn btn-warning font-size-12">Dodaj do Koszyka</button>';
+                                        echo '<button type="submit" name="top_sale_submit" class="btn color-skin-bg color-second font-size-12">Dodaj do Koszyka</button>';
                                     }
                                 ?>
                             </form>

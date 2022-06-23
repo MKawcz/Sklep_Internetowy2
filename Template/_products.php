@@ -9,16 +9,16 @@
         <div class="row">
             <div class="col-sm-6">
                 <img src="<?php echo $item['item_image'] ?? "/assets/products/1.png"; ?>" alt="product" class="img-fluid">
-                <div class="form-row pt-4 font-size-16 font-baloo">
-                    <div class="col">
+                <div class="form-row pt-4 font-size-16 font-baloo ms-6" style="display: flex; justify-content: space-between">
+                    <div class="col-sm-6">
                         <button type="submit" class="btn btn-danger form-control">Dokonaj Zakupu</button>
                     </div>
-                    <div class="col">
+                    <div class="col-sm-6">
                         <?php
                         if (in_array($item['item_id'], $Cart->getCartId($product->getData('cart')) ?? [])){
                             echo '<button type="submit" disabled class="btn btn-success font-size-16 form-control">W Koszyku</button>';
                         }else{
-                            echo '<button type="submit" name="top_sale_submit" class="btn btn-warning font-size-16 form-control">Dodaj do Koszyka</button>';
+                            echo '<button type="submit" name="top_sale_submit" class="btn color-skin-bg color-second font-size-16 form-control">Dodaj do Koszyka</button>';
                         }
                         ?>
                     </div>
@@ -26,31 +26,17 @@
             </div>
             <div class="col-sm-6 py-5">
                 <h5 class="font-baloo font-size-20"><?php echo $item['item_name'] ?? "Unknown"; ?></h5>
-                <small>by <?php echo $item['item_brand'] ?? "Brand"; ?></small>
-                <div class="d-flex">
-                    <div class="rating text-warning font-size-12">
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="far fa-star"></i></span>
-                    </div>
-                    <a href="#" class="px-2 font-rale font-size-14">20,534 ratings | 1000+ answered questions</a>
-                </div>
+                <small><?php echo $item['item_brand'] ?? "Brand"; ?></small>
                 <hr class="m-0">
 
                 <!-- product price -->
                 <table class="my-3">
                     <tr class="font-rale font-size-14">
-                        <td>Cena Bazowa:</td>
-                        <td style="text-decoration: line-through;">$162.00</td>
-                    </tr>
-                    <tr class="font-rale font-size-14">
-                        <td>Przecena:</td>
+                        <td>Cena:</td>
                         <td class="font-size-20 text-danger">$<span><?php echo $item['item_price'] ?? 0; ?></span><small class="text-dark font-size-12">&nbsp;&nbsp;Uwzględniając wszystkie podatki</small></td>
                     </tr>
                     <tr class="font-rale font-size-14">
-                        <td>Zaoszczędzisz:</td>
+                        <td>Cena z dostawą:</td>
                         <td><span class="font-size-16 text-danger">$10.00</span></td>
                     </tr>
                 </table>
@@ -90,49 +76,18 @@
                 </div>
                 <!-- !order-details -->
 
-                <div class="row">
-                    <div class="col-6">
-                        <!-- color -->
-                        <div class="color my-3">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="font-baloo">Color:</h6>
-                                <div class="p-2 color-skin-bg rounded-circle"><button class="btn font-size-14"></button></div>
-                                <div class="p-2 color-primary-bg rounded-circle"><button class="btn font-size-14"></button></div>
-                                <div class="p-2 color-second-bg rounded-circle"><button class="btn font-size-14"></button></div>
-                            </div>
-                        </div>
-                        <!-- !color -->
-                    </div>
-                    <div class="col-6">
-                        <!-- product qty section -->
-                        <div class="qty d-flex">
-                            <h6 class="font-baloo">Qty</h6>
-                            <div class="px-4 d-flex font-rale">
-                                <button class="qty-up border bg-light" data-id="pro1"><i class="fas fa-angle-up"></i></button>
-                                <input type="text" data-id="pro1" class="qty_input border px-2 w-50 bg-light" disabled value="1" placeholder="1">
-                                <button data-id="pro1" class="qty-down border bg-light"><i class="fas fa-angle-down"></i></button>
-                            </div>
-                        </div>
-                        <!-- !product qty section -->
-                    </div>
-                </div>
 
-                <!-- size -->
-                <div class="size my-3">
-                    <h6 class="font-baloo">Size :</h6>
-                    <div class="d-flex justify-content-between w-75">
-                        <div class="font-rubik border p-2">
-                            <button class="btn p-0 font-size-14">4GB RAM</button>
-                        </div>
-                        <div class="font-rubik border p-2">
-                            <button class="btn p-0 font-size-14">6GB RAM</button>
-                        </div>
-                        <div class="font-rubik border p-2">
-                            <button class="btn p-0 font-size-14">8GB RAM</button>
-                        </div>
+                <!-- product qty section -->
+                <div class="qty d-flex pt-4">
+                    <h6 class="font-baloo">Qty</h6>
+                    <div class="px-4 d-flex font-rale">
+                        <button class="qty-up border bg-light" data-id="pro1"><i class="fas fa-angle-up"></i></button>
+                        <input type="text" data-id="pro1" class="qty_input border px-2 w-50 bg-light" disabled value="1" placeholder="1">
+                        <button data-id="pro1" class="qty-down border bg-light"><i class="fas fa-angle-down"></i></button>
                     </div>
                 </div>
-                <!-- !size -->
+                <!-- !product qty section -->
+
 
             </div>
 
