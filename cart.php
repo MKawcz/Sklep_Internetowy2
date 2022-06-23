@@ -6,13 +6,10 @@ include("header.php");
 
 <?php
 
-    /* include cart template*/
-    include("Template/_cart-tamplate.php");
-    /* include cart template*/
+    /* include cart item if it is not empty */
+    count($product->getData('cart')) ? include("Template/_cart-tamplate.php") : include("Template/notFound/_cart_notFound.php");
+    /* include cart item if it is not empty */
 
-    /* include new-products */
-    include("Template/_new-products.php");
-    /* include new-products */
 
 ?>
 
