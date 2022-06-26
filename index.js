@@ -131,5 +131,20 @@ $(document).ready(function(){
             }}); // closing ajax request
     });
 
+    $("button.delete").click(function(e){
+        if(!confirm('Na pewno chcesz usunąć ten produkt?')){
+            e.preventDefault();
+            return false;
+        }
+        return true;
+    });
 
 });
+
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+}

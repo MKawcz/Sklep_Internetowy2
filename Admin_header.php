@@ -1,3 +1,12 @@
+<?php
+
+    if (!isset($_SESSION['logged']))
+    {
+        header('Location: login.php');
+        exit();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -20,7 +29,7 @@
 
     <?php
     // require functions.php
-    require ('functions.php');
+    require('functions.php');
 
     ?>
 
@@ -31,31 +40,31 @@
     <div class="strip d-flex justify-content-between px-4 py-1 bg-light">
         <p class="font-rale font-size-12 text-black-50 m-0">Mikołaj Kawczyński ul.Kościelna 6, 14-105 Łukta +48 518 744 608</p>
         <div class="font-rale font-size-14">
-            <a href="login.php" class="px-3 border-right border-left text-dark">Zaloguj się</a>
+            <a href="logout.php" class="px-3 border-right border-left text-dark">Wyloguj się</a>
         </div>
     </div>
 
     <!--Primary Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark color-second-bg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">Sklep Muzyczny</a>
+            <a class="navbar-brand" href="Admin_Index.php">Sklep Muzyczny</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav m-auto font-rubik">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php#top-sale">Na Sprzedaż</a>
+                        <a class="nav-link active" aria-current="page" href="Admin_Index.php#top-sale">Na Sprzedaż</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php#special-price">Oferty Specjalne</a>
+                        <a class="nav-link" href="Admin_Index.php#special-price">Oferty Specjalne</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php#blogs">Blog</a>
+                        <a class="nav-link" href="Admin_Index.php#blogs">Blog</a>
                     </li>
                 </ul>
                 <form action="#" class="font-size-14 font-rale">
-                    <a href="cart.php" class="py-2 rounded-pill color-primary-bg">
+                    <a href="Admin_cart.php" class="py-2 rounded-pill color-primary-bg">
                         <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
                         <span class="px-3 py-2 rounded-pill text-dark bg-light"><?php echo count($product->getData('cart')); ?></span>
                     </a>

@@ -1,4 +1,13 @@
 <?php
+
+    session_start();
+
+    if ((isset($_SESSION['logged'])) && ($_SESSION['logged']==true))
+    {
+        header('Location: Admin_Index.php');
+        exit();
+    }
+
     ob_start();
     //include header.php
     include("header.php");
