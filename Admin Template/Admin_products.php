@@ -1,12 +1,20 @@
 <!-- product -->
 <?php
-
     if (!isset($_SESSION['logged'])) {
         header('Location: ../login.php');
         exit();
     }
 
     $item_id = $_GET['item_id'] ?? 1;
+
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (isset($_POST['edit_product_submit'])) {
+            $editedrecord = $product->editProduct($item_id, $_POST['edited_column'], $_POST['value']);
+        }
+    }
+
+
     foreach ($product->getData() as $item):
         if($item['item_id'] == $item_id):
 ?>
@@ -22,7 +30,7 @@
                             <form method="post" class="form-container m-2">
                                 <h4>Edytuj Produkt</h4>
                                 <p>Wybierz pole do edycji:
-                                <select name="edited_field">
+                                <select name="edited_column">
                                     <option value="item_genre">Gatunek</option>
                                     <option value="item_brand">Artysta</option>
                                     <option value="item_name">Nazwa</option>
@@ -31,7 +39,7 @@
                                 </select></p>
                                 <p>Nowa wartość: <input type="text" name="value"></p>
 
-                                <button type="submit" name="add_product_submit" class="btn btn-primary font-size-12">Zatwierdź zmianę</button>
+                                <button type="submit" name="edit_product_submit" class="btn btn-primary font-size-12">Zatwierdź zmianę</button>
                                 <button type="button" class="btn btn-danger font-size-12" onclick="closeForm()">Zamknij</button>
                             </form>
                         </div>
@@ -41,8 +49,8 @@
             <div class="col-sm-6 py-5">
                 <h5 class="font-baloo font-size-20"><?php echo $item['item_name'] ?? "Unknown"; ?></h5>
                 <small><?php echo $item['item_brand'] ?? "Brand"; ?></small>
+                <p class="font-size-12">Gatunek: <i class="text-info"><?php echo $item['item_genre'] ?? "Genre"; ?></i></p>
                 <hr class="m-0">
-
                 <!-- product price -->
                 <table class="my-3">
                     <tr class="font-rale font-size-14">
@@ -63,19 +71,19 @@
                             <div class="font-size-20 my-2 color-second">
                                 <span class="fas fa-retweet border p-3 rounded-pill"></span>
                             </div>
-                            <a href="#" class="font-rale font-size-12">10 Days <br> Replacement</a>
+                            <a href="#" class="font-rale font-size-12">14 Dni <br> na Zwrot</a>
                         </div>
                         <div class="return text-center mr-5">
                             <div class="font-size-20 my-2 color-second">
                                 <span class="fas fa-truck  border p-3 rounded-pill"></span>
                             </div>
-                            <a href="#" class="font-rale font-size-12">Daily Tuition <br>Deliverd</a>
+                            <a href="#" class="font-rale font-size-12">Bezpieczna <br>Dostawa</a>
                         </div>
                         <div class="return text-center mr-5">
                             <div class="font-size-20 my-2 color-second">
                                 <span class="fas fa-check-double border p-3 rounded-pill"></span>
                             </div>
-                            <a href="#" class="font-rale font-size-12">1 Year <br>Warranty</a>
+                            <a href="#" class="font-rale font-size-12">Roczna <br>Gwarancja</a>
                         </div>
                     </div>
                 </div>
@@ -84,22 +92,20 @@
 
                 <!-- order-details -->
                 <div id="order-details" class="font-rale d-flex flex-column text-dark">
-                    <small>Delivery by: Mar 29 - Apr 1</small>
-                    <small>Sold by <a href="#">Daily Electronics </a>(4.5 out of 5 | 18,198 ratings)</small>
-                    <small><i class="fas fa-map-marker-alt color-primary"></i>&nbsp;&nbsp;Deliver to Customer - 424201</small>
+
                 </div>
                 <!-- !order-details -->
 
 
                 <!-- product qty section -->
-                <div class="qty d-flex pt-4">
-                    <h6 class="font-baloo">Qty</h6>
+                <!--<div class="qty d-flex pt-4">
+                    <h6 class="font-baloo">Ilość</h6>
                     <div class="px-4 d-flex font-rale">
-                        <button class="qty-up border bg-light" data-id="pro1"><i class="fas fa-angle-up"></i></button>
-                        <input type="text" data-id="pro1" class="qty_input border px-2 w-50 bg-light" disabled value="1" placeholder="1">
-                        <button data-id="pro1" class="qty-down border bg-light"><i class="fas fa-angle-down"></i></button>
+                        <button class="qty-up border bg-light" data-id="<?php /*echo $item['item_id'] ?? '0';*/?>"><i class="fas fa-angle-up"></i></button>
+                        <input type="text" data-id="<?php /*echo $item['item_id'] ?? '0';*/?>" class="qty_input border px-2 w-50 bg-light" disabled value="1" placeholder="1">
+                        <button data-id="<?php /*echo $item['item_id'] ?? '0';*/?>" class="qty-down border bg-light"><i class="fas fa-angle-down"></i></button>
                     </div>
-                </div>
+                </div>-->
                 <!-- !product qty section -->
 
 

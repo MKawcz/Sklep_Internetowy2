@@ -1,6 +1,14 @@
 <!-- product -->
 <?php
     $item_id = $_GET['item_id'] ?? 1;
+
+    if($_SERVER['REQUEST_METHOD'] == "POST"){
+        if(isset($_POST['products_submit'])){
+            // call method addToCart
+            $Cart->addToCartFromProducts($_POST['user_id'], $_POST['item_id']);
+        }
+    }
+
     foreach ($product->getData() as $item):
         if($item['item_id'] == $item_id):
 ?>
@@ -11,33 +19,35 @@
                 <img src="<?php echo $item['item_image'] ?? "/assets/products/1.png"; ?>" alt="product" class="img-fluid">
                 <div class="form-row pt-4 font-size-16 font-baloo ms-6" style="display: flex; justify-content: space-between">
                     <div class="col-sm-6">
-                        <button type="submit" class="btn btn-danger form-control">Dokonaj Zakupu</button>
-                    </div>
-                    <div class="col-sm-6">
-                        <?php
-                        if (in_array($item['item_id'], $Cart->getCartId($product->getData('cart')) ?? [])){
-                            echo '<button type="submit" disabled class="btn btn-success font-size-16 form-control">W Koszyku</button>';
-                        }else{
-                            echo '<button type="submit" name="top_sale_submit" class="btn color-skin-bg color-second font-size-16 form-control">Dodaj do Koszyka</button>';
-                        }
-                        ?>
+                        <form method="POST">
+                            <input type="hidden" name="item_id" value="<?php echo $item['item_id'] ?? '1'; ?>">
+                            <input type="hidden" name="user_id" value="<?php echo '1'; ?>">
+                            <?php
+                                if (in_array($item['item_id'], $Cart->getCartId($product->getData('cart')) ?? [])){
+                                    echo '<button type="submit" disabled class="btn btn-success font-size-16 form-control">W Koszyku</button>';
+                                }else{
+                                    echo '<button type="submit" name="products_submit" class="btn color-skin-bg color-second font-size-16 form-control">Dodaj do Koszyka</button>';
+                                }
+                            ?>
+                        </form>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6 py-5">
                 <h5 class="font-baloo font-size-20"><?php echo $item['item_name'] ?? "Unknown"; ?></h5>
                 <small><?php echo $item['item_brand'] ?? "Brand"; ?></small>
+                <p class="font-size-12">Gatunek: <i class="text-info"><?php echo $item['item_genre'] ?? "Genre"; ?></i></p>
                 <hr class="m-0">
 
                 <!-- product price -->
                 <table class="my-3">
                     <tr class="font-rale font-size-14">
                         <td>Cena:</td>
-                        <td class="font-size-20 text-danger">$<span><?php echo $item['item_price'] ?? 0; ?></span><small class="text-dark font-size-12">&nbsp;&nbsp;Uwzględniając wszystkie podatki</small></td>
+                        <td class="font-size-20 text-danger">$<span class="product_price" data-id="<?php echo $item['item_id'] ?? '0';?>"><?php echo $item['item_price'] ?? 0; ?></span><small class="text-dark font-size-12">&nbsp;&nbsp;Uwzględniając wszystkie podatki</small></td>
                     </tr>
                     <tr class="font-rale font-size-14">
                         <td>Cena z dostawą:</td>
-                        <td><span class="font-size-16 text-danger">$10.00</span></td>
+                        <td>$<span class="product_price_with_delivery" data-id="<?php echo $item['item_id'] ?? '0';?>"><?php echo $item['item_price'] ?? 0; ?></span></td>
                     </tr>
                 </table>
                 <!-- product price -->
@@ -49,19 +59,19 @@
                             <div class="font-size-20 my-2 color-second">
                                 <span class="fas fa-retweet border p-3 rounded-pill"></span>
                             </div>
-                            <a href="#" class="font-rale font-size-12">10 Days <br> Replacement</a>
+                            <a href="#" class="font-rale font-size-12">14 Dni <br> na Zwrot</a>
                         </div>
                         <div class="return text-center mr-5">
                             <div class="font-size-20 my-2 color-second">
                                 <span class="fas fa-truck  border p-3 rounded-pill"></span>
                             </div>
-                            <a href="#" class="font-rale font-size-12">Daily Tuition <br>Deliverd</a>
+                            <a href="#" class="font-rale font-size-12">Bezpieczna <br>Dostawa</a>
                         </div>
                         <div class="return text-center mr-5">
                             <div class="font-size-20 my-2 color-second">
                                 <span class="fas fa-check-double border p-3 rounded-pill"></span>
                             </div>
-                            <a href="#" class="font-rale font-size-12">1 Year <br>Warranty</a>
+                            <a href="#" class="font-rale font-size-12">Roczna <br>Gwarancja</a>
                         </div>
                     </div>
                 </div>
@@ -70,24 +80,24 @@
 
                 <!-- order-details -->
                 <div id="order-details" class="font-rale d-flex flex-column text-dark">
-                    <small>Delivery by: Mar 29 - Apr 1</small>
-                    <small>Sold by <a href="#">Daily Electronics </a>(4.5 out of 5 | 18,198 ratings)</small>
-                    <small><i class="fas fa-map-marker-alt color-primary"></i>&nbsp;&nbsp;Deliver to Customer - 424201</small>
+                    <h5 class="font-baloo font-size-20">Opcje Dostawy</h5>
+                    <small><input type="radio" class="delivery" name="delivery" value="3"> Paczkomat</small>
+                    <small><input type="radio" class="delivery" name="delivery" value="5"> DHL</small>
+                    <small><input type="radio" class="delivery" name="delivery" value="4"> DPD</small>
+                    <small><input type="radio" class="delivery" name="delivery" value="6"> Fedex</small>
                 </div>
                 <!-- !order-details -->
 
-
-                <!-- product qty section -->
-                <div class="qty d-flex pt-4">
-                    <h6 class="font-baloo">Qty</h6>
+                 <!--product qty section -->
+                <!--<div class="qty d-flex pt-4">
+                    <h6 class="font-baloo">Ilość:</h6>
                     <div class="px-4 d-flex font-rale">
-                        <button class="qty-up border bg-light" data-id="pro1"><i class="fas fa-angle-up"></i></button>
-                        <input type="text" data-id="pro1" class="qty_input border px-2 w-50 bg-light" disabled value="1" placeholder="1">
-                        <button data-id="pro1" class="qty-down border bg-light"><i class="fas fa-angle-down"></i></button>
+                        <button class="qty-up border bg-light" data-id="<?php /*echo $item['item_id'] ?? '0';*/?>"><i class="fas fa-angle-up"></i></button>
+                        <input type="text" data-id="<?php /*echo $item['item_id'] ?? '0';*/?>" class="qty_input border px-2 w-50 bg-light" disabled value="1" placeholder="1">
+                        <button data-id="<?php /*echo $item['item_id'] ?? '0';*/?>" class="qty-down border bg-light"><i class="fas fa-angle-down"></i></button>
                     </div>
-                </div>
+                </div>-->
                 <!-- !product qty section -->
-
 
             </div>
 

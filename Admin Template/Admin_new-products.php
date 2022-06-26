@@ -17,7 +17,7 @@
 
         if(isset($_POST['add_product_submit'])){
             // call method addProduct
-            $product->addProduct($_POST['item_genre'], $_POST['item_brand'], $_POST['item_name'], $_POST['item_price'], $_POST['item_image'], 'product');
+            $product->addProduct($_POST['item_genre'], $_POST['item_brand'], $_POST['item_name'], $_POST['item_price'], $_POST['item_image']);
         }
 
         if(isset($_POST['delete_product_submit'])){

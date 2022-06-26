@@ -62,10 +62,18 @@
                 <div class="sub-total border text-center mt-2">
                     <h6 class="font-size-12 font-rale text-success py-3"><i class="fas fa-check"></i> Z nami możesz być pewny bezpiecznych zakupów</h6>
                     <div class="border-top py-4">
-                        <h5 class="font-baloo font-size-20">Suma:&nbsp; <span class="text-danger">$<span class="text-danger" id="deal-price"><?php echo isset($subTotal) ? $Cart->getSum($subTotal) : 0; ?></span> </span> </h5>
-                        <button type="submit" class="btn btn-warning mt-3">Przejdź do zakupu</button>
+                        <h5 class="font-baloo font-size-20">Suma:&nbsp; <span class="text-danger">$<span class="sum_price text-danger" id="deal-price"><?php echo isset($subTotal) ? $Cart->getSum($subTotal) : 0; ?></span> </span> </h5>
+                        <h6 class="font-baloo font-size-16">Z dostawą: $<span class="sum_price_with_delivery" data-id="<?php echo $item['item_id'] ?? '0';?>"><?php echo isset($subTotal) ? $Cart->getSum($subTotal) : 0; ?></span></h6>
+                        <a href="./checkout.php" class="btn btn-warning mt-3">Przejdź do zakupu</a>
+                    </div>
+                    <div id="order-choice" class="font-rale d-flex flex-column text-dark">
+                        <small><input type="radio" class="delivery" name="delivery" value="3">Paczkomat</small>
+                        <small><input type="radio" class="delivery" name="delivery" value="5">DHL</small>
+                        <small><input type="radio" class="delivery" name="delivery" value="4">DPD</small>
+                        <small><input type="radio" class="delivery" name="delivery" value="6">Fedex</small>
                     </div>
                 </div>
+
             </div>
             <!-- !subtotal section-->
         </div>

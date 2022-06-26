@@ -13,6 +13,8 @@
     $email = $_POST['email'];
     $password = $_POST['password'];
 
+    //Miki123&&
+
     if ($result = $db->con->query(sprintf("SELECT * FROM user WHERE email='%s'", $email)))
     {
         $how_many_users = $result->rowCount();
@@ -20,7 +22,7 @@
         {
             $row = $result->fetch(PDO::FETCH_ASSOC);
 
-            if ($password == $row['password'])
+            if (password_verify($password, $row['password']))
             {
                 $_SESSION['logged'] = true;
                 $_SESSION['id'] = $row['id'];

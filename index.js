@@ -139,6 +139,39 @@ $(document).ready(function(){
         return true;
     });
 
+
+    const product_price = parseFloat($('.product_price[data-id]').text()) || 0.00,
+        product_price_with_delivery = $('.product_price_with_delivery[data-id]');
+
+    //console.log(product_price.text(), product_price_with_delivery.text());
+
+    $('#order-details').on('click', calculatePriceWithDelvery);
+
+    function calculatePriceWithDelvery(e) {
+        //console.log(e.target);
+        if (e.target.nodeName == 'INPUT' && e.target.type == 'radio') {
+            const delivery_price = parseFloat($('[name="delivery"]:checked').val()) || 0.00;
+            //console.log(delivery_price);
+            product_price_with_delivery.text((parseFloat(product_price + delivery_price)).toFixed(2));
+        }
+    }
+
+
+    const sum_price = parseFloat($('.sum_price').text()) || 0.00,
+        sum_price_with_delivery = $('.sum_price_with_delivery[data-id]');
+
+
+    $('#order-choice').on('click', calculateSumWithDelvery);
+
+    function calculateSumWithDelvery(e) {
+        if (e.target.nodeName == 'INPUT' && e.target.type == 'radio') {
+            const delivery_price = parseFloat($('[name="delivery"]:checked').val()) || 0.00;
+            //console.log(delivery_price);
+            sum_price_with_delivery.text((parseFloat(sum_price + delivery_price)).toFixed(2));
+        }
+    }
+
+
 });
 
 function openForm() {

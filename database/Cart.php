@@ -50,6 +50,23 @@ class Cart
         }
     }
 
+    public function addToCartFromProducts($userid, $itemid)
+    {
+        if (isset($userid) && isset($itemid)) {
+            $params = array(
+                "user_id" => $userid,
+                "item_id" => $itemid
+            );
+
+            // insert data into cart
+            $result = $this->insertIntoCart($params);
+            if ($result) {
+                // Reload Page
+                header("Location: product.php?item_id=$itemid");
+            }
+        }
+    }
+
     // delete cart item using cart item id
     public function deleteCart($item_id = null, $table = 'cart')
     {
