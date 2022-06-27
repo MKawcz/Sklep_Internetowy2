@@ -122,8 +122,11 @@ require ("functions.php");
                 <h5>Dane do Dostawy:</h5>
                 <div class="col font-size-16 font-rubik">
                     <?php
-                    foreach ($_SESSION as $key=>$val)
-                        echo $val."<br/>";
+                        echo "<p>" . $_SESSION['imie'] . " " . $_SESSION['nazwisko'] . "</p>";
+                        echo "<p>" . $_SESSION['email'] . "</p>";
+                        echo "<p>+48 " . $_SESSION['telefon'] . "</p>";
+                        echo "<p> ul. " . $_SESSION['ulica'] . " " . $_SESSION['nrdomu'] . "</p>";
+                        echo "<p>" . $_SESSION['kodpocztowy'] . " " . $_SESSION['miejscowosc'] .  "</p>";
                     ?>
                 </div>
         </div>
